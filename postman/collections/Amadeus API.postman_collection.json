@@ -1,0 +1,712 @@
+{
+  "info": {
+    "_postman_id": "4e45ea2f-e99e-4ff4-ae90-79da2b3fb918",
+    "name": "Amadeus API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "flights",
+      "item": [
+        {
+          "name": "flights_search",
+          "id": "797183e6-b239-4451-9bbb-996dfe29770f",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=JFK&destinationLocationCode=LHR&departureDate=2026-03-20&returnDate=2026-03-28&adults=1&max=1&currencyCode=USD",
+              "protocol": "https",
+              "host": [
+                "test",
+                "api",
+                "amadeus",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "shopping",
+                "flight-offers"
+              ],
+              "query": [
+                {
+                  "key": "originLocationCode",
+                  "value": "JFK"
+                },
+                {
+                  "key": "destinationLocationCode",
+                  "value": "LHR"
+                },
+                {
+                  "key": "departureDate",
+                  "value": "2026-03-20"
+                },
+                {
+                  "key": "returnDate",
+                  "value": "2026-03-28"
+                },
+                {
+                  "key": "adults",
+                  "value": "1"
+                },
+                {
+                  "key": "max",
+                  "value": "1"
+                },
+                {
+                  "key": "currencyCode",
+                  "value": "USD"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "afe29b49-6a63-402c-8053-909b7e813e9c"
+    },
+    {
+      "name": "destinations",
+      "item": [
+        {
+          "name": "city_search",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9477a9e9-332e-49b3-9112-52cf7c9ddc89",
+                "exec": [
+                  "// Test 1: Status code is 200",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// Test 2: Response body is valid JSON and contains meta and data keys",
+                  "pm.test(\"Response body is valid JSON with meta and data keys\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an(\"object\");",
+                  "    pm.expect(jsonData).to.have.property(\"meta\");",
+                  "    pm.expect(jsonData).to.have.property(\"data\");",
+                  "});",
+                  "",
+                  "// Test 3: meta.count is a number greater than 0",
+                  "pm.test(\"meta.count is a number greater than 0\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.meta.count).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.meta.count).to.be.greaterThan(0);",
+                  "});",
+                  "",
+                  "// Test 4: Every item in data array has required properties with correct values",
+                  "pm.test(\"Each data item has type 'location', subType 'city', name, geoCode, and address.countryCode 'US'\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.data).to.be.an(\"array\");",
+                  "    ",
+                  "    jsonData.data.forEach((item, index) => {",
+                  "        pm.expect(item.type, `Item ${index}: type should be 'location'`).to.equal(\"location\");",
+                  "        pm.expect(item.subType, `Item ${index}: subType should be 'city'`).to.equal(\"city\");",
+                  "        pm.expect(item.name, `Item ${index}: name should be a string`).to.be.a(\"string\");",
+                  "        pm.expect(item.geoCode, `Item ${index}: geoCode should exist`).to.be.an(\"object\");",
+                  "        pm.expect(item.geoCode.latitude, `Item ${index}: latitude should be a number`).to.be.a(\"number\");",
+                  "        pm.expect(item.geoCode.longitude, `Item ${index}: longitude should be a number`).to.be.a(\"number\");",
+                  "        ",
+                  "        // Check address.countryCode if address is present",
+                  "        if (item.address) {",
+                  "            pm.expect(item.address.countryCode, `Item ${index}: countryCode should be 'US'`).to.equal(\"US\");",
+                  "        }",
+                  "    });",
+                  "});",
+                  "",
+                  "// Test 5: Response time is under 1500ms",
+                  "pm.test(\"Response time is under 1500ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1500);",
+                  "});",
+                  "",
+                  "// Test 6: Set environment variable 'lastCitiesCount' to meta.count",
+                  "pm.test(\"Set lastCitiesCount variable\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.environment.set(\"lastCitiesCount\", jsonData.meta.count);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "606992b9-c841-4326-875c-12a5129127cd",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "ca308cc9-bd69-4d7d-826a-741084b142df",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://test.api.amadeus.com/v1/reference-data/locations/cities?keyword=denv&countryCode=US",
+              "protocol": "https",
+              "host": [
+                "test",
+                "api",
+                "amadeus",
+                "com"
+              ],
+              "path": [
+                "v1",
+                "reference-data",
+                "locations",
+                "cities"
+              ],
+              "query": [
+                {
+                  "key": "keyword",
+                  "value": "denv",
+                  "uuid": "d52239e4-b961-4f13-8994-b8512e95a2ae"
+                },
+                {
+                  "key": "countryCode",
+                  "value": "US",
+                  "uuid": "32db6631-3075-488d-aae2-593ff7b31406"
+                },
+                {
+                  "key": "max",
+                  "value": "max",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "nearest_airport",
+          "id": "e90b725e-a3f9-4300-8a98-2db382335b7a",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://test.api.amadeus.com/v1/reference-data/locations/airports?latitude=40.7127281&longitude=-74.0060152",
+              "protocol": "https",
+              "host": [
+                "test",
+                "api",
+                "amadeus",
+                "com"
+              ],
+              "path": [
+                "v1",
+                "reference-data",
+                "locations",
+                "airports"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "40.7127281"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-74.0060152"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "75fa4861-383d-465e-ad9d-3db592e26d4e"
+    },
+    {
+      "name": "activities/tours",
+      "item": [
+        {
+          "name": "activities_nearby",
+          "id": "6e63c452-b90d-49a1-83cf-22673887f162",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://test.api.amadeus.com/v1/shopping/activities?latitude=39.739236&longitude=-104.984862&radius=10&currencyCode=USD",
+              "protocol": "https",
+              "host": [
+                "test",
+                "api",
+                "amadeus",
+                "com"
+              ],
+              "path": [
+                "v1",
+                "shopping",
+                "activities"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "39.739236"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-104.984862"
+                },
+                {
+                  "key": "radius",
+                  "value": "10"
+                },
+                {
+                  "key": "currencyCode",
+                  "value": "USD"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "restaraunts",
+          "id": "09299bf6-7896-451f-b7ca-559e4105feb7",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://test.api.amadeus.com/v1/reference-data/locations/pois?latitude=34.0522&longitude=-118.2437&categories=RESTAURANT&radius=5&page[limit]=10",
+              "protocol": "https",
+              "host": [
+                "test",
+                "api",
+                "amadeus",
+                "com"
+              ],
+              "path": [
+                "v1",
+                "reference-data",
+                "locations",
+                "pois"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "34.0522"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-118.2437"
+                },
+                {
+                  "key": "categories",
+                  "value": "RESTAURANT"
+                },
+                {
+                  "key": "radius",
+                  "value": "5"
+                },
+                {
+                  "key": "page[limit]",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "417419df-c64f-4b7c-91dc-1e99f80926b0"
+    },
+    {
+      "name": "hotels",
+      "item": [
+        {
+          "name": "hotels_nearby",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c90aa85c-8b0f-436f-bc3d-52f9c9cc941f",
+                "exec": [
+                  "// Test 1: Verify response status is 200",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// Test 2: Verify response time is below 2000ms",
+                  "pm.test(\"Response time is less than 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "// Test 3: Verify body has JSON and top-level \"data\" is an array",
+                  "pm.test(\"Response body is JSON and 'data' is an array\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an(\"object\");",
+                  "    pm.expect(jsonData.data).to.be.an(\"array\");",
+                  "});",
+                  "",
+                  "// Test 4: Verify each item in data has required properties",
+                  "pm.test(\"Each hotel has required properties: hotelId, name, geoCode.latitude, geoCode.longitude, address.cityName, distance.value, distance.unit\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    jsonData.data.forEach((hotel, index) => {",
+                  "        pm.expect(hotel.hotelId, `Hotel at index ${index} missing hotelId`).to.exist;",
+                  "        pm.expect(hotel.name, `Hotel at index ${index} missing name`).to.exist;",
+                  "        pm.expect(hotel.geoCode, `Hotel at index ${index} missing geoCode`).to.be.an(\"object\");",
+                  "        pm.expect(hotel.geoCode.latitude, `Hotel at index ${index} missing geoCode.latitude`).to.exist;",
+                  "        pm.expect(hotel.geoCode.longitude, `Hotel at index ${index} missing geoCode.longitude`).to.exist;",
+                  "        pm.expect(hotel.address, `Hotel at index ${index} missing address`).to.be.an(\"object\");",
+                  "        pm.expect(hotel.address.cityName, `Hotel at index ${index} missing address.cityName`).to.exist;",
+                  "        pm.expect(hotel.distance, `Hotel at index ${index} missing distance`).to.be.an(\"object\");",
+                  "        pm.expect(hotel.distance.value, `Hotel at index ${index} missing distance.value`).to.exist;",
+                  "        pm.expect(hotel.distance.unit, `Hotel at index ${index} missing distance.unit`).to.exist;",
+                  "    });",
+                  "});",
+                  "",
+                  "// Test 5: Verify meta.count equals data.length",
+                  "pm.test(\"meta.count equals data array length\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.meta).to.be.an(\"object\");",
+                  "    pm.expect(jsonData.meta.count).to.equal(jsonData.data.length);",
+                  "});",
+                  "",
+                  "// Test 6: Verify no item has distance.value >= 50 (all should be < 50 km)",
+                  "pm.test(\"No hotel has distance.value >= 50 km\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    jsonData.data.forEach((hotel, index) => {",
+                  "        pm.expect(hotel.distance.value, `Hotel at index ${index} has distance.value >= 50`).to.be.below(50);",
+                  "    });",
+                  "});",
+                  "",
+                  "// Test 7: Set collection/environment variable \"lastHotelsQueryCount\" to meta.count",
+                  "pm.test(\"Set lastHotelsQueryCount variable\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.environment.set(\"lastHotelsQueryCount\", jsonData.meta.count);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "936f4a33-8c6d-42ba-b42c-5e14b3d7323e",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-geocode?latitude=39.7538083&longitude=-104.9885167",
+              "protocol": "https",
+              "host": [
+                "test",
+                "api",
+                "amadeus",
+                "com"
+              ],
+              "path": [
+                "v1",
+                "reference-data",
+                "locations",
+                "hotels",
+                "by-geocode"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "39.7538083"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-104.9885167"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "hotel_by_name",
+          "id": "4d49e815-d51f-4fc3-98d0-55fd8f852968",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=RZDENRZZ",
+              "protocol": "https",
+              "host": [
+                "test",
+                "api",
+                "amadeus",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "shopping",
+                "hotel-offers"
+              ],
+              "query": [
+                {
+                  "key": "hotelIds",
+                  "value": "RZDENRZZ"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "5fde5d19-1fa7-4f17-b539-463afd2a5fa3"
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Auth - Get Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "a6817163-471f-4bf8-8693-5918ea6538d8",
+                "exec": [
+                  "const data = pm.response.json();\r",
+                  "\r",
+                  "// Save the new access token\r",
+                  "pm.environment.set(\"access_token\", data.access_token);\r",
+                  "\r",
+                  "// Save token expiry timestamp (ms)\r",
+                  "pm.environment.set(\"token_expiry\", Date.now() + data.expires_in * 1000);\r",
+                  "\r",
+                  "console.log(\"✅ Access token updated automatically\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "85b492bc-702a-4a28-b4c4-1b1575f6e393",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "39e77602-056f-40a9-92b3-7ec6c4164e21",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "{{grant_type}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "{{client_secret}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://test.api.amadeus.com/v1/security/oauth2/token",
+              "protocol": "https",
+              "host": [
+                "test",
+                "api",
+                "amadeus",
+                "com"
+              ],
+              "path": [
+                "v1",
+                "security",
+                "oauth2",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "b8753c13-179b-4c77-ae1a-742f6d2ea9da"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{access_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "71f263a0-a47c-48cf-ae2f-6b2d0047efee",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "// --- Amadeus OAuth Token Auto-Refresh ---\r",
+          "\r",
+          "const token = pm.environment.get(\"access_token\");\r",
+          "const expiresAt = pm.environment.get(\"token_expires_at\");\r",
+          "const now = Date.now();\r",
+          "\r",
+          "// Amadeus OAuth token endpoint\r",
+          "const authUrl = \"https://test.api.amadeus.com/v1/security/oauth2/token\";\r",
+          "\r",
+          "// Function to fetch a new token\r",
+          "function fetchToken() {\r",
+          "    pm.sendRequest({\r",
+          "        url: authUrl,\r",
+          "        method: 'POST',\r",
+          "        header: {\r",
+          "            'Content-Type': 'application/x-www-form-urlencoded'\r",
+          "        },\r",
+          "        body: {\r",
+          "            mode: 'urlencoded',\r",
+          "            urlencoded: [\r",
+          "                { key: 'grant_type', value: pm.environment.get(\"grant_type\")},\r",
+          "                { key: 'client_id', value: pm.environment.get(\"client_id\") },\r",
+          "                { key: 'client_secret', value: pm.environment.get(\"client_secret\") }\r",
+          "            ]\r",
+          "        }\r",
+          "    }, function (err, res) {\r",
+          "        if (err) {\r",
+          "            console.error(\"Token request failed\", err);\r",
+          "            return;\r",
+          "        }\r",
+          "\r",
+          "        const json = res.json();\r",
+          "\r",
+          "        if (!json.access_token) {\r",
+          "            console.error(\"Token not received\", json);\r",
+          "            return;\r",
+          "        }\r",
+          "\r",
+          "        // Save token and expiry to environment\r",
+          "        pm.environment.set(\"access_token\", json.access_token);\r",
+          "        pm.environment.set(\"token_expires_at\", (Date.now() + json.expires_in * 1000).toString());\r",
+          "\r",
+          "        console.log(\"New access token generated:\", json.access_token);\r",
+          "    });\r",
+          "}\r",
+          "\r",
+          "// Check token validity\r",
+          "if (!token || !expiresAt || now >= Number(expiresAt)) {\r",
+          "    console.log(\"Access token missing or expired. Fetching new token...\");\r",
+          "    fetchToken();\r",
+          "} else {\r",
+          "    console.log(\"Access token is valid:\", token);\r",
+          "}"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "5d490414-2998-4b67-9ec8-7ffb0a15c891",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

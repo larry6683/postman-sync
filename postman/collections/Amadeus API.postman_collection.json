@@ -25,7 +25,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=JFK&destinationLocationCode=LHR&departureDate=2026-03-20&returnDate=2026-03-28&adults=1&max=1&currencyCode=USD",
+              "raw": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=JFK&destinationLocationCode=DEN&departureDate=2026-03-20&returnDate=2026-03-28&adults=1&currencyCode=USD&children=1",
               "protocol": "https",
               "host": [
                 "test",
@@ -41,31 +41,45 @@
               "query": [
                 {
                   "key": "originLocationCode",
-                  "value": "JFK"
+                  "value": "JFK",
+                  "uuid": "e38887b2-0fc9-4f06-a764-83661bd02de8"
                 },
                 {
                   "key": "destinationLocationCode",
-                  "value": "LHR"
+                  "value": "DEN",
+                  "uuid": "12d3f7d2-0bc4-4caa-a987-5907ce0a1ed4"
                 },
                 {
                   "key": "departureDate",
-                  "value": "2026-03-20"
+                  "value": "2026-03-20",
+                  "uuid": "3e0075c2-a723-4251-8e35-0a12e0580473"
                 },
                 {
                   "key": "returnDate",
-                  "value": "2026-03-28"
+                  "value": "2026-03-28",
+                  "uuid": "6b3c85bf-c23d-46a3-84e8-7892d960ca4c"
                 },
                 {
                   "key": "adults",
-                  "value": "1"
+                  "value": "1",
+                  "uuid": "a81cd038-606b-48c4-96fc-ac62a2b0927f"
                 },
                 {
                   "key": "max",
-                  "value": "1"
+                  "value": "1",
+                  "uuid": "9421b490-1814-403e-849c-d38603bfb2c5",
+                  "disabled": true
                 },
                 {
                   "key": "currencyCode",
-                  "value": "USD"
+                  "value": "USD",
+                  "uuid": "6eeb53e4-0520-40b0-9684-f318a99cc1a0"
+                },
+                {
+                  "key": "children",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "4b8292f9-a24c-4fe3-8fc7-4caf68f03485"
                 }
               ]
             }

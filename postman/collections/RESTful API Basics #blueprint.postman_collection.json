@@ -12,16 +12,19 @@
         {
           "listen": "test",
           "script": {
+            "type": "text/javascript",
             "exec": [
               "pm.test(\"Status code is 200\", function () {",
               "    pm.response.to.have.status(200);",
               "});"
-            ],
-            "type": "text/javascript"
+            ]
           }
         }
       ],
       "id": "b9b78706-c510-4e2f-b87f-ca9fd9e5f477",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
       "request": {
         "method": "GET",
         "header": [],
@@ -50,17 +53,20 @@
         {
           "listen": "test",
           "script": {
+            "type": "text/javascript",
             "exec": [
               "pm.test(\"Successful POST request\", function () {",
               "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
               "});",
               ""
-            ],
-            "type": "text/javascript"
+            ]
           }
         }
       ],
       "id": "59883829-ed99-40d1-b2f9-da11079c20db",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
       "request": {
         "method": "POST",
         "header": [],
@@ -92,17 +98,20 @@
         {
           "listen": "test",
           "script": {
+            "type": "text/javascript",
             "exec": [
               "pm.test(\"Successful PUT request\", function () {",
               "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
               "});",
               ""
-            ],
-            "type": "text/javascript"
+            ]
           }
         }
       ],
       "id": "948df74f-1329-4381-852f-917b8d7dc13c",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
       "request": {
         "method": "PUT",
         "header": [],
@@ -140,17 +149,20 @@
         {
           "listen": "test",
           "script": {
+            "type": "text/javascript",
             "exec": [
               "pm.test(\"Successful DELETE request\", function () {",
               "    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
               "});",
               ""
-            ],
-            "type": "text/javascript"
+            ]
           }
         }
       ],
       "id": "09e181c5-4171-4ecf-b3f8-a95beccda7bb",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
       "request": {
         "method": "DELETE",
         "header": [],

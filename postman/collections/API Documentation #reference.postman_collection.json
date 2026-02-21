@@ -23,6 +23,9 @@
             }
           ],
           "id": "803ebe3c-bd34-4335-86b8-d480e8cf8ef1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "method": "GET",
             "header": [],
@@ -141,6 +144,9 @@
             }
           ],
           "id": "d45f7e0b-5671-490a-9346-0214330bbf45",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "method": "POST",
             "header": [
@@ -417,6 +423,9 @@
             }
           ],
           "id": "fbc15d46-5f3b-4e91-b6d7-4195f92be3bf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "method": "GET",
             "header": [],
@@ -593,6 +602,9 @@
             }
           ],
           "id": "4ff97546-c806-46ed-9842-fa16f5cc7b78",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "method": "DELETE",
             "header": [],
@@ -737,6 +749,9 @@
             }
           ],
           "id": "c4f7b4d9-06be-4782-9b4d-5e32b7291c6c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "method": "PUT",
             "header": [
@@ -1085,6 +1100,9 @@
             }
           ],
           "id": "49d0953b-fb3b-45ad-a681-6a59b2573cce",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "method": "GET",
             "header": [],

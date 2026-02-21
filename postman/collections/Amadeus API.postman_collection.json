@@ -41,45 +41,36 @@
               "query": [
                 {
                   "key": "originLocationCode",
-                  "value": "JFK",
-                  "uuid": "e38887b2-0fc9-4f06-a764-83661bd02de8"
+                  "value": "JFK"
                 },
                 {
                   "key": "destinationLocationCode",
-                  "value": "DEN",
-                  "uuid": "12d3f7d2-0bc4-4caa-a987-5907ce0a1ed4"
+                  "value": "DEN"
                 },
                 {
                   "key": "departureDate",
-                  "value": "2026-03-20",
-                  "uuid": "3e0075c2-a723-4251-8e35-0a12e0580473"
+                  "value": "2026-03-20"
                 },
                 {
                   "key": "returnDate",
-                  "value": "2026-03-28",
-                  "uuid": "6b3c85bf-c23d-46a3-84e8-7892d960ca4c"
+                  "value": "2026-03-28"
                 },
                 {
                   "key": "adults",
-                  "value": "1",
-                  "uuid": "a81cd038-606b-48c4-96fc-ac62a2b0927f"
+                  "value": "1"
                 },
                 {
                   "key": "max",
                   "value": "1",
-                  "uuid": "9421b490-1814-403e-849c-d38603bfb2c5",
                   "disabled": true
                 },
                 {
                   "key": "currencyCode",
-                  "value": "USD",
-                  "uuid": "6eeb53e4-0520-40b0-9684-f318a99cc1a0"
+                  "value": "USD"
                 },
                 {
                   "key": "children",
-                  "value": "1",
-                  "type": "text",
-                  "uuid": "4b8292f9-a24c-4fe3-8fc7-4caf68f03485"
+                  "value": "1"
                 }
               ]
             }
@@ -201,13 +192,11 @@
               "query": [
                 {
                   "key": "keyword",
-                  "value": "denv",
-                  "uuid": "d52239e4-b961-4f13-8994-b8512e95a2ae"
+                  "value": "denv"
                 },
                 {
                   "key": "countryCode",
-                  "value": "US",
-                  "uuid": "32db6631-3075-488d-aae2-593ff7b31406"
+                  "value": "US"
                 },
                 {
                   "key": "max",

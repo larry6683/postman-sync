@@ -1,0 +1,134 @@
+{
+  "info": {
+    "_postman_id": "9d669783-b0d8-4f58-8814-cddfbe49e8bf",
+    "name": "OpenWeather API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Historical",
+      "id": "62e4d9e8-b60b-4def-ba5c-42ca5ea1b92e",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://history.openweathermap.org/data/2.5/history/city?id=2885679&type=hour&appid=66a0386898bcc3d652bd75a33396fd33",
+          "protocol": "https",
+          "host": [
+            "history",
+            "openweathermap",
+            "org"
+          ],
+          "path": [
+            "data",
+            "2.5",
+            "history",
+            "city"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "2885679"
+            },
+            {
+              "key": "type",
+              "value": "hour"
+            },
+            {
+              "key": "appid",
+              "value": "66a0386898bcc3d652bd75a33396fd33"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "weather forecast",
+      "id": "ac0650ac-058b-40ff-8100-f0c0ba0a8613",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://pro.openweathermap.org/data/2.5/weather?q=London,uk&APPID=66a0386898bcc3d652bd75a33396fd33",
+          "protocol": "https",
+          "host": [
+            "pro",
+            "openweathermap",
+            "org"
+          ],
+          "path": [
+            "data",
+            "2.5",
+            "weather"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "London,uk"
+            },
+            {
+              "key": "APPID",
+              "value": "66a0386898bcc3d652bd75a33396fd33"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "climate forecast",
+      "id": "7d51a46f-f170-4bf5-a851-76496131636c",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "APPID",
+              "type": "string"
+            },
+            {
+              "key": "value",
+              "value": "{{appid}}",
+              "type": "string"
+            },
+            {
+              "key": "in",
+              "value": "query",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://pro.openweathermap.org/data/2.5/forecast/climate?lat=51.5085&lon=-0.1257",
+          "protocol": "https",
+          "host": [
+            "pro",
+            "openweathermap",
+            "org"
+          ],
+          "path": [
+            "data",
+            "2.5",
+            "forecast",
+            "climate"
+          ],
+          "query": [
+            {
+              "key": "lat",
+              "value": "51.5085"
+            },
+            {
+              "key": "lon",
+              "value": "-0.1257"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -8,10 +8,10 @@
     {
       "name": "Historical",
       "id": "62e4d9e8-b60b-4def-ba5c-42ca5ea1b92e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
       "request": {
-        "auth": {
-          "type": "noauth"
-        },
         "method": "GET",
         "header": [],
         "url": {
@@ -49,6 +49,9 @@
     {
       "name": "weather forecast",
       "id": "ac0650ac-058b-40ff-8100-f0c0ba0a8613",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
       "request": {
         "method": "GET",
         "header": [],
@@ -82,6 +85,9 @@
     {
       "name": "climate forecast",
       "id": "7d51a46f-f170-4bf5-a851-76496131636c",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
       "request": {
         "auth": {
           "type": "apikey",
@@ -122,13 +128,11 @@
           "query": [
             {
               "key": "lat",
-              "value": "51.5085",
-              "uuid": "0048e193-c779-4d63-9251-c317f94c8fd4"
+              "value": "51.5085"
             },
             {
               "key": "lon",
-              "value": "-0.1257",
-              "uuid": "3e6366e4-8224-4544-a035-4aeba115e64d"
+              "value": "-0.1257"
             }
           ]
         }

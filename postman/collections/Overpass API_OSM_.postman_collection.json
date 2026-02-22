@@ -1,0 +1,48 @@
+{
+  "info": {
+    "_postman_id": "bde4a994-f8c0-408b-a811-1fba01adbfb1",
+    "name": "Overpass API(OSM)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "https://overpass-api.de/api/interpreter",
+      "id": "1f23c5ae-4728-412b-b8db-3689d73d6dac",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/plain",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[out:json];\r\n(\r\n  node[\"amenity\"=\"restaurant\"](around:3000,40.013251,-105.267408);\r\n  way[\"amenity\"=\"restaurant\"](around:3000,40.013251,-105.267408);\r\n);\r\nout center;",
+          "options": {
+            "raw": {
+              "language": "text"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://overpass-api.de/api/interpreter",
+          "protocol": "https",
+          "host": [
+            "overpass-api",
+            "de"
+          ],
+          "path": [
+            "api",
+            "interpreter"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

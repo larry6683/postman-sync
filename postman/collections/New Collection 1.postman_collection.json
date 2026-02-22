@@ -1,0 +1,51 @@
+{
+  "info": {
+    "_postman_id": "bd3533a9-d63f-42ac-a7dd-acec477b3bc5",
+    "name": "Nominatum API (OSM)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "https://nominatim.openstreetmap.org/search",
+      "id": "3813b203-06a7-4325-be08-481d5bcec590",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://nominatim.openstreetmap.org/search?addressdetails=1&q=bakery+in+berlin+wedding&format=jsonv2&limit=1",
+          "protocol": "https",
+          "host": [
+            "nominatim",
+            "openstreetmap",
+            "org"
+          ],
+          "path": [
+            "search"
+          ],
+          "query": [
+            {
+              "key": "addressdetails",
+              "value": "1",
+              "uuid": "8d38f150-b14d-4cd4-a8fa-f1e0677eaa64"
+            },
+            {
+              "key": "q",
+              "value": "bakery+in+berlin+wedding",
+              "uuid": "5f9cbc6e-719a-4fd1-b511-d266341f2248"
+            },
+            {
+              "key": "format",
+              "value": "jsonv2",
+              "uuid": "316fb76f-1c85-4d2f-9fb5-1783c121ebb6"
+            },
+            {
+              "key": "limit",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

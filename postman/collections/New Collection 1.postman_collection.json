@@ -8,6 +8,9 @@
     {
       "name": "https://nominatim.openstreetmap.org/search",
       "id": "3813b203-06a7-4325-be08-481d5bcec590",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
       "request": {
         "method": "GET",
         "header": [],
@@ -25,18 +28,15 @@
           "query": [
             {
               "key": "addressdetails",
-              "value": "1",
-              "uuid": "8d38f150-b14d-4cd4-a8fa-f1e0677eaa64"
+              "value": "1"
             },
             {
               "key": "q",
-              "value": "bakery+in+berlin+wedding",
-              "uuid": "5f9cbc6e-719a-4fd1-b511-d266341f2248"
+              "value": "bakery+in+berlin+wedding"
             },
             {
               "key": "format",
-              "value": "jsonv2",
-              "uuid": "316fb76f-1c85-4d2f-9fb5-1783c121ebb6"
+              "value": "jsonv2"
             },
             {
               "key": "limit",
